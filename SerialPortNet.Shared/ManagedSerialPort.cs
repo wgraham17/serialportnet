@@ -38,6 +38,7 @@
         public void Dispose()
         {
             this.tokenSource.Dispose();
+            this.serialPortImplementation.Dispose();
         }
 
         private async Task ConnectionMonitorPump(CancellationToken token)

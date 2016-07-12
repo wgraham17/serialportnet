@@ -1,8 +1,9 @@
 ﻿namespace SerialPortNet
 {
+    using System;
     using System.Threading.Tasks;
 
-    internal interface ISerialPortImplementation
+    internal interface ISerialPortImplementation : IDisposable
     {
         bool IsOpen();
 

@@ -48,6 +48,11 @@ namespace SerialPortNet
         {
             await this.serialPort.BaseStream.WriteAsync(data, 0, data.Length);
         }
+
+        public void Dispose()
+        {
+            this.serialPort.Dispose();
+        }
     }
 }
 

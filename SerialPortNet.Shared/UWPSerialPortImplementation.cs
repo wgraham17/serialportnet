@@ -42,6 +42,11 @@ namespace SerialPortNet
         {
             await this.serialDevice.OutputStream.WriteAsync(data.AsBuffer());
         }
+
+        public void Dispose()
+        {
+            this.serialDevice.Dispose();
+        }
     }
 }
 
