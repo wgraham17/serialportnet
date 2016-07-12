@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0461b8bc-66fe-48c2-8ab9-88cff28f1585</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SerialPortNet</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ISerialPortImplementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ManagedSerialPort.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MessageReceivedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SerialPortFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SerialPortOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SerialPortParity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SerialPortStopBits.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UWPSerialPortImplementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Win32SerialPortImplementation.cs" />
+  </ItemGroup>
+</Project>
