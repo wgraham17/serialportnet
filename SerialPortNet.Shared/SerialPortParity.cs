@@ -39,7 +39,7 @@
         }
 #endif
 
-#if WIN32
+#if NETFX_FULL
         public static System.IO.Ports.Parity ToParity(this SerialPortParity source)
         {
             switch (source)

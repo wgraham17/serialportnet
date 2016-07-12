@@ -1,4 +1,4 @@
-﻿#if WIN32
+﻿#if NETFX_FULL
 
 namespace SerialPortNet
 {

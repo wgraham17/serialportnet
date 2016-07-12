@@ -9,6 +9,7 @@
     <Import_RootNamespace>SerialPortNet</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ConnectionStatusChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISerialPortImplementation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ManagedSerialPort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MessageReceivedEventArgs.cs" />
