@@ -6,6 +6,7 @@
 
     public class ManagedSerialPort : IDisposable
     {
+        public event EventHandler<ConnectionStatusChangedEventArgs> ConnectionStatusChanged;
         public event EventHandler<MessageReceivedEventArgs> MessageReceived;
 
         private bool isInitialized;
@@ -18,6 +19,14 @@
             this.serialPortImplementation = serialPortImplementation;
         }
 
+        public bool IsConnected
+        {
+            get
+            {
+                return this.serialPortImplementation.IsOpen();
+            }
+        }
+
         public void Initialize()
         {
             if (!this.isInitialized)
@@ -25,14 +34,16 @@
                 this.isInitialized = true;
                 this.serialPortImplementation.Open();
 
+                this.ConnectionStatusChanged?.Invoke(this, new ConnectionStatusChangedEventArgs(true));
+
                 Task.Factory.StartNew(() => this.ReadPump(this.tokenSource.Token), TaskCreationOptions.LongRunning);
                 Task.Factory.StartNew(() => this.ConnectionMonitorPump(this.tokenSource.Token), TaskCreationOptions.LongRunning);
             }
         }
 
-        public async Task Write(byte[] data)
+        public void Write(byte[] data)
         {
-            await this.serialPortImplementation.WriteAsync(data);
+            AsyncHelper.RunSync(() => this.serialPortImplementation.WriteAsync(data));
         }
 
         public void Dispose()
@@ -47,7 +58,10 @@
             {
                 if (!this.serialPortImplementation.IsOpen())
                 {
+                    this.ConnectionStatusChanged?.Invoke(this, new ConnectionStatusChangedEventArgs(false));
+
                     this.serialPortImplementation.Open();
+                    this.ConnectionStatusChanged?.Invoke(this, new ConnectionStatusChangedEventArgs(true));
                 }
 
                 await Task.Delay(500);

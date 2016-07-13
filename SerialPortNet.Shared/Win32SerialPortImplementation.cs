@@ -34,13 +34,13 @@ namespace SerialPortNet
 
         public async Task<byte[]> ReadAsync()
         {
-            if (this.serialPort.BytesToRead > 0)
+            if (this.serialPort.IsOpen && this.serialPort.BytesToRead > 0)
             {
                 var buffer = new byte[this.serialPort.BytesToRead];
                 await this.serialPort.BaseStream.ReadAsync(buffer, 0, buffer.Length);
                 return buffer;
             }
-            
+
             return null;
         }
 
