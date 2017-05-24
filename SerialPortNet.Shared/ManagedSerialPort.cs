@@ -48,6 +48,7 @@
 
         public void Dispose()
         {
+            this.tokenSource.Cancel();
             this.tokenSource.Dispose();
             this.serialPortImplementation.Dispose();
         }
@@ -64,7 +65,7 @@
                     this.ConnectionStatusChanged?.Invoke(this, new ConnectionStatusChangedEventArgs(true));
                 }
 
-                await Task.Delay(500);
+                await Task.Delay(500, token);
             }
         }
 
@@ -83,7 +84,7 @@
                 }
                 else
                 {
-                    await Task.Delay(100);
+                    await Task.Delay(100, token);
                 }
             }
         }
